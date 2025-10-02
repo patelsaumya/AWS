@@ -1,4 +1,4 @@
-# ☁️ Cloud Computing - README
+# ☁️ Cloud Computing
 
 ## 📌 What is Cloud Computing?
 Cloud computing is the **on-demand delivery** of compute power, storage, databases, and IT resources through a **pay-as-you-go** pricing model.
