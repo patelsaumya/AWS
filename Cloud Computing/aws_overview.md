@@ -108,6 +108,13 @@ AWS services can be either **Region-Scoped** or **Global-Scoped**:
 
 ---
 
+## ⛑️ Shared Responsibility Model
+
+- **Customer** : Security *in* the cloud
+- **AWS** : Security *of* the cloud
+
+---
+
 ## ✅ Key Takeaways
 
 * AWS started as Amazon’s internal infra → became **world’s #1 cloud provider**.
