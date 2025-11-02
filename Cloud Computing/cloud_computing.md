@@ -62,16 +62,19 @@ Cloud computing is the **on-demand delivery** of compute power, storage, databas
 - Example: **Amazon EC2**, Google Compute Engine, Azure VM, DigitalOcean.
 - **You manage**: Applications, data, runtime, middleware, OS.
 - **Provider manages**: Virtualization, servers, storage, networking.
+- Analogy: Raw resources (*like renting land*)
 
 ### 2. Platform as a Service (PaaS)
 - Removes infrastructure management.
 - Focus only on **applications & data**.
 - Example: **AWS Elastic Beanstalk**, Google App Engine, Heroku.
+- Analogy: Ready platform (*like renting a house to customize inside*)
 
 ### 3. Software as a Service (SaaS)
 - Fully managed by the provider.
 - You just use the product.
 - Examples: **AWS Rekognition**, Gmail, Dropbox, Zoom.
+- Analogy: Finished service (*like staying in a hotel, everything managed for you*)
 
 ---
 
