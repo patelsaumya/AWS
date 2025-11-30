@@ -27,6 +27,20 @@ To achieve this, we **attach an IAM Role** to that service.
 
 1. You create an **IAM Role** and attach a **policy** that defines its permissions.
 2. You assign that role to an AWS service (e.g., EC2, Lambda).
+```json
+---- Trust policy
+{
+    "Effect": "Allow",
+    "Action": [
+        "sts:AssumeRole"
+    ],
+    "Principal": {
+        "Service": [
+            "ec2.amazonaws.com"
+        ]
+    }
+}
+```
 3. When the service performs an API call, AWS automatically provides it with **temporary credentials** tied to that role.
 4. These credentials are used to make authorized API requests.
 
