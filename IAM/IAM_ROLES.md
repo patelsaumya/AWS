@@ -29,6 +29,7 @@ To achieve this, we **attach an IAM Role** to that service.
 2. You assign that role to an AWS service (e.g., EC2, Lambda).
 ```json
 ---- Trust policy
+
 {
     "Effect": "Allow",
     "Action": [
