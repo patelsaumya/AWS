@@ -58,13 +58,15 @@ Example policy snippet:
 
 ```json
 {
+  "Sid": "1",
   "Effect": "Allow",
+  "Principal": {
+    "AWS": "arn:aws:iam::987654321000:root"
+  },
   "Action": [
-    "ec2:Describe*",
-    "elasticloadbalancing:Describe*",
-    "cloudwatch:*"
+    "s3:GetObject"
   ],
-  "Resource": "*"
+  "Resource": "arn:aws:s3:::my-shared-bucket/*"
 }
 ```
 
