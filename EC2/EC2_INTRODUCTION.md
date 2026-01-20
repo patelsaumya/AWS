@@ -178,3 +178,73 @@ echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 
 - **Public** IPv4 address → Use this to access your instance (may change on restart)
 - **Private** IPv4 address → Used internally within AWS (stays the same)
+
+---
+
+## 🔌 Step 8 — Connect to Your EC2 Instance via SSH
+
+Once your instance is running, you can connect to it using SSH. There are two main methods:
+
+### Option 1: Local Command Line (SSH)
+
+Use your local terminal or command prompt to connect directly:
+
+**Windows (PowerShell/Command Prompt):**
+```bash
+ssh -i .\EC2Tutorial.pem ec2-user@<PUBLIC_IP_ADDRESS>
+```
+
+**Mac/Linux:**
+```bash
+ssh -i ~/EC2Tutorial.pem ec2-user@<PUBLIC_IP_ADDRESS>
+```
+
+**Notes:**
+- Replace `<PUBLIC_IP_ADDRESS>` with your instance's public IPv4 address
+- The `.pem` file must be in the current directory (or provide the full path)
+- For Amazon Linux, the default username is `ec2-user`
+- You may need to set proper permissions on the `.pem` file first
+
+### Option 2: EC2 Instance Connect (AWS Console)
+
+Connect directly from the AWS Management Console without needing SSH keys:
+
+1. Go to **EC2 Console** → **Instances**
+2. Select your instance
+3. Click **Connect** button
+4. Choose **EC2 Instance Connect** tab
+5. Click **Connect**
+
+This opens a browser-based terminal session directly in your AWS console.
+
+> 🧠 **Note:**  
+> EC2 Instance Connect works without managing SSH keys.
+
+---
+
+## ⛑️ Shared Responsibility Model
+
+### 🔹 AWS Responsibilities
+
+AWS is responsible for:
+
+* **Data centers** – Physical infrastructure and security of all AWS facilities.
+* **Physical host isolation** – Ensuring proper isolation on physical hosts (e.g., dedicated hosts).
+* **Hardware management** – Replacing faulty hardware when servers fail.
+* **Compliance** – Maintaining regulatory compliance for infrastructure and certifications.
+* **Virtualization layer** – Managing the hypervisor and virtualization infrastructure.
+
+### 🔹 Customer Responsibilities
+
+You are responsible for:
+
+* **Security Groups** – Defining your own security group rules to control inbound/outbound traffic and access to your EC2 instances.
+* **Operating System** – Managing the entire virtual machine, including:
+  * OS patches and updates (Windows, Linux, or macOS).
+  * OS configuration and hardening.
+* **Software & Utilities** – All software and utilities installed on your EC2 instance.
+* **IAM Roles & Permissions** – Understanding how to assign IAM roles and ensuring permissions are correctly configured.
+* **Data Security** – Making sure data stored on your EC2 instance is secure and properly managed.
+
+> 🧠 **Key Takeaway:**  
+> AWS provides the virtual machine infrastructure, but you own and manage everything inside it—from the operating system to the applications and data.

@@ -53,7 +53,7 @@ Let’s say you have an EC2 instance that needs to **read files from an S3 bucke
 
 Instead of storing AWS access keys on the instance (which is insecure), you:
 1. Create an **IAM Role** with a policy allowing `s3:GetObject` access.
-2. Attach that role to your EC2 instance.
+2. Attach that role to your EC2 instance: `Actions > Security > Modify IAM role`
 3. When your instance runs an application that calls S3 APIs, AWS uses the **role’s temporary credentials** to authenticate automatically.
 
 ✅ **Result:** The EC2 instance can securely access S3 without embedding any credentials.
