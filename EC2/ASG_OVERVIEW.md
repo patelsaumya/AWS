@@ -353,7 +353,6 @@ Predictive Scaling can identify and respond to patterns such as:
 
 - **Requires historical data** – Needs consistent traffic patterns to learn from
 - **Best for predictable workloads** – Most effective with recurring patterns
-- **Exam focus** – Frequently appears in certification exams
 
 ---
 
