@@ -33,7 +33,7 @@ This document provides an overview of EC2 storage options. For detailed informat
 
 ## ⛑️ Shared Responsibility Model for EC2 Storage
 
-Understanding the shared responsibility model is crucial for the Certified Cloud Practitioner exam. This model defines what AWS is responsible for versus what you, as the customer, are responsible for regarding EC2 storage.
+This model defines what AWS is responsible for versus what you, as the customer, are responsible for regarding EC2 storage.
 
 ### 🔹 AWS Responsibilities
 

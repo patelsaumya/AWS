@@ -108,6 +108,17 @@ AWS services can be either **Region-Scoped** or **Global-Scoped**:
 
 ---
 
+## 🏷️ Amazon Resource Names (ARNs)
+
+**ARNs (Amazon Resource Names)** uniquely identify AWS resources across the entire AWS platform.
+
+* **Format**: `arn:partition:service:region:account-id:resource-type/resource-id`
+* **Example**: `arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0`
+* **Global uniqueness** → Every AWS resource has a unique ARN
+* **Used for**: IAM policies, resource references, cross-service communication
+
+---
+
 ## ⛑️ Shared Responsibility Model
 
 - **Customer** : Security *in* the cloud
