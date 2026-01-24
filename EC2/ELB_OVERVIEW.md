@@ -206,6 +206,179 @@ The traffic flow:
 
 ---
 
+## 🧪 Hands-On: Creating an Application Load Balancer
+
+### 📋 Overview
+
+Creating an Application Load Balancer with two EC2 instances to demonstrate load balancing and high availability features.
+
+---
+
+### 📝 Step 1: Launch EC2 Instances
+
+#### 1️⃣ Create Two EC2 Instances
+
+1. **Go to EC2 Console** → **Launch Instances**
+2. **Configuration Settings:**
+   - **Number of instances:** 2
+   - **Name:** `My First Instance` (rename second to `My Second Instance`)
+   - **AMI:** Amazon Linux 2
+   - **Instance type:** t2.micro
+   - **Key pair:** Proceed without a key pair (use EC2 Instance Connect if needed)
+
+#### 2️⃣ Configure Security Group
+
+1. **Network settings** → **Select existing security group**
+2. **Choose:** `Launch Wizard 1` (allows HTTP and SSH traffic)
+
+#### 3️⃣ Add User Data Script
+
+In **Advanced Details** → **User data**, add this script:
+
+```bash
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+```
+
+#### 4️⃣ Launch and Test Instances
+
+1. **Launch instances** and wait for them to be ready
+2. **Test each instance:**
+   - Copy the **Public IPv4 address** of first instance
+   - Visit the URL in browser → Should see "Hello World from [instance-name]"
+   - Repeat for second instance
+
+> 💡 **Expected Result:** Two different URLs, each showing "Hello World" with different instance names
+
+---
+
+### 📝 Step 2: Create Application Load Balancer
+
+#### 1️⃣ Navigate to Load Balancers
+
+1. **EC2 Console** → **Load Balancers** → **Create Load Balancer**
+2. **Choose:** **Application Load Balancer**
+
+> 📚 **Quick Review:**
+> - **ALB:** HTTP/HTTPS traffic (Layer 7)
+> - **NLB:** TCP/UDP, ultra-high performance (Layer 4)
+> - **GWLB:** Security, intrusion detection, firewalls (Layer 3)
+
+#### 2️⃣ Configure Basic Settings
+
+1. **Name:** `DemoALB`
+2. **Scheme:** Internet-facing
+3. **IP address type:** IPv4
+
+#### 3️⃣ Network Mapping
+
+1. **Deploy in all available Availability Zones**
+2. **Select all subnets** for high availability
+
+#### 4️⃣ Create Security Group for ALB
+
+1. **Create new security group:**
+   - **Name:** `demo-sg-load-balancer`
+   - **Description:** `Allow HTTP into ALB`
+   - **Inbound rules:** HTTP (port 80) from anywhere (0.0.0.0/0)
+   - **Outbound rules:** Leave default
+
+2. **Apply the new security group** to ALB (remove default)
+
+---
+
+### 📝 Step 3: Create Target Group
+
+#### 1️⃣ Create Target Group
+
+1. **Listeners and routing** → **Create target group**
+2. **Configuration:**
+   - **Target type:** Instances
+   - **Name:** `demo-tg-alb`
+   - **Protocol:** HTTP
+   - **Port:** 80
+   - **HTTP version:** HTTP 1
+
+#### 2️⃣ Configure Health Checks
+
+- **Health check path:** `/` (default)
+- **Keep all other settings** as default
+
+#### 3️⃣ Register Targets
+
+1. **Select both EC2 instances**
+2. **Port:** 80
+3. **Click:** "Include as pending below"
+4. **Create target group**
+
+---
+
+### 📝 Step 4: Complete ALB Setup
+
+#### 1️⃣ Link Target Group to ALB
+
+1. **Go back to ALB creation page**
+2. **Refresh** the target group dropdown
+3. **Select:** `demo-tg-alb`
+4. **Create load balancer**
+
+#### 2️⃣ Wait for Provisioning
+
+- **Status:** Provisioning → Active (takes a few minutes)
+
+---
+
+### 📝 Step 5: Test Load Balancing
+
+#### 1️⃣ Test Basic Load Balancing
+
+1. **Copy the ALB DNS name** from the load balancer details
+2. **Paste into browser** and visit the URL
+3. **Refresh the page multiple times**
+
+> ✅ **Expected Result:** The instance name in "Hello World from [instance-name]" should alternate between your two instances, proving load balancing is working.
+
+#### 2️⃣ Verify Target Health
+
+1. **Go to Target Groups** → **Select** `demo-tg-alb`
+2. **Targets tab** → Both instances should show **"Healthy"** status
+
+---
+
+### 📝 Step 6: Test High Availability (Failover)
+
+#### 1️⃣ Simulate Instance Failure
+
+1. **Go to EC2 Instances**
+2. **Select first instance** → **Instance State** → **Stop Instance**
+3. **Wait 30 seconds**
+
+#### 2️⃣ Check Target Group Status
+
+1. **Go to Target Group** → **Targets tab**
+2. **Refresh** the page
+3. **First instance** should now show **"Unused"** or **"Unhealthy"**
+
+#### 3️⃣ Test Load Balancer Response
+
+1. **Go back to ALB URL**
+2. **Refresh multiple times**
+
+> ✅ **Expected Result:** All traffic now goes to the remaining healthy instance. The load balancer automatically stopped sending traffic to the failed instance.
+
+#### 4️⃣ Test Instance Recovery
+
+1. **Start the stopped instance** again
+2. **Wait for it to boot up** (2-3 minutes)
+3. **Check target group** → Instance should show **"Initial"** then **"Healthy"**
+4. **Test ALB URL** → Traffic should now balance between both instances again
+
+---
+
 ## 🎯 Key Takeaways
 
 - **ELB is a managed service** – AWS handles all infrastructure, maintenance, and upgrades
