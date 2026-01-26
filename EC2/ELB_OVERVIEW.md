@@ -83,8 +83,6 @@ AWS offers **four types** of load balancers:
 ### 3️⃣ Gateway Load Balancer (GWLB)
 ### 4️⃣ Classic Load Balancer (Retired)
 
-> ⚠️ **Note:** Classic Load Balancer was retired in 2023 and is no longer relevant for exams.
-
 ---
 
 ## 🌐 Application Load Balancer (ALB)

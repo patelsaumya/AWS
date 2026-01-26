@@ -328,8 +328,6 @@ If you see bucket type options:
 - **Choose:** `General Purpose` (recommended)
 - **Skip if not shown:** Some regions don't show this option - that's fine, it defaults to General Purpose
 
-> 💡 **Note:** Directory buckets are for specific use cases not covered in basic exams.
-
 #### 3️⃣ Choose a Unique Bucket Name
 
 **Bucket naming considerations:**

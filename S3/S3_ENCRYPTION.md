@@ -4,8 +4,6 @@
 
 **Amazon S3 Encryption** protects your data at rest by automatically encrypting objects stored in S3 buckets. S3 provides multiple encryption options to meet different security requirements, with **server-side encryption enabled by default** for all new buckets and objects.
 
-Understanding S3 encryption is essential for data security and compliance, and encryption questions commonly appear on AWS certification exams.
-
 ---
 
 ## 🔐 Encryption Models
