@@ -10,12 +10,12 @@ EC2 instances support multiple storage options, each designed for different use 
 
 This document provides an overview of EC2 storage options. For detailed information on each storage type, refer to the following documentation:
 
-- **[AMI (Amazon Machine Image)](AMI_OVERVIEW.md)** – Templates that define the software configuration for EC2 instances
-- **[EBS (Elastic Block Store)](EBS_OVERVIEW.md)** – Network-attached block storage volumes for EC2 instances
-- **[EFS (Elastic File System)](EFS_OVERVIEW.md)** – Managed network file system (NFS) for shared file storage
-- **[FSx](FSx_OVERVIEW.md)** – Managed third-party high-performance file systems (Windows File Server and Lustre)
-- **[EC2 Instance Store](EC2_INSTANCE_STORE_OVERVIEW.md)** – Ephemeral storage physically attached to the host server
-- **[EC2 Image Builder](EC2_IMAGE_BUILDER_OVERVIEW.md)** – Service for automating AMI creation, maintenance, and testing
+- **[AMI (Amazon Machine Image)](AMI.md)** – Templates that define the software configuration for EC2 instances
+- **[EBS (Elastic Block Store)](EBS.md)** – Network-attached block storage volumes for EC2 instances
+- **[EFS (Elastic File System)](EFS.md)** – Managed network file system (NFS) for shared file storage
+- **[FSx](FSx.md)** – Managed third-party high-performance file systems (Windows File Server and Lustre)
+- **[EC2 Instance Store](EC2_Instance_Store.md)** – Ephemeral storage physically attached to the host server
+- **[EC2 Image Builder](EC2_Image_Builder.md)** – Service for automating AMI creation, maintenance, and testing
 
 ---
 
