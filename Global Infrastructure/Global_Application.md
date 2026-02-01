@@ -85,6 +85,41 @@
 
 ---
 
+## 🏛️ Global Application Architectures
+
+### 1. **Single Region, Single AZ**
+- **Setup:** One EC2 instance in one AZ, one region
+- **High Availability:** ❌ No
+- **Global Latency:** ❌ Poor (high latency for distant users)
+- **Difficulty:** ⭐ Very Low
+- **Use case:** Simple applications, development/testing
+
+### 2. **Single Region, Multi-AZ**
+- **Setup:** Multiple AZs within one region
+- **High Availability:** ✅ Yes (fault tolerance within region)
+- **Global Latency:** ❌ Poor (AZs close together, high latency for distant users)
+- **Difficulty:** ⭐⭐ Low
+- **Use case:** Production applications within one geographic area
+
+### 3. **Multi-Region, Active-Passive**
+- **Setup:** Two or more regions, one active (handles reads/writes), others passive (replication, reads only)
+- **High Availability:** ✅ Yes
+- **Global Latency:**
+  - **Reads:** ✅ Improved (data replicated globally, low read latency)
+  - **Writes:** ❌ Poor (all writes go to active region, high write latency)
+- **Difficulty:** ⭐⭐⭐ Medium
+- **Use case:** Applications with read-heavy workloads, disaster recovery
+
+### 4. **Multi-Region, Active-Active**
+- **Setup:** Multiple regions, each can handle reads and writes, replication between all
+- **High Availability:** ✅ Yes
+- **Global Latency:** ✅ Excellent (improved read and write latency globally)
+- **Difficulty:** ⭐⭐⭐⭐ High (complex application logic required)
+- **Use case:** Global applications requiring low latency for both reads and writes
+- **Example:** DynamoDB Global Tables
+
+---
+
 ## 📊 Summary
 
 | Component | Purpose | Example |
@@ -115,6 +150,12 @@
 - **CloudFront** – Content Delivery Network
 - **S3 Transfer Acceleration** – Fast global transfers
 - **AWS Global Accelerator** – Optimized global performance
+
+✅ **Global application architectures:**
+- **Single Region, Single AZ** – Simple, no HA, poor global latency
+- **Single Region, Multi-AZ** – HA within region, poor global latency
+- **Multi-Region, Active-Passive** – HA, improved read latency, poor write latency
+- **Multi-Region, Active-Active** – HA, excellent read/write latency (e.g., DynamoDB Global Tables)
 
 ✅ **AWS private network** – Extensive infrastructure with submarine cables and private links for optimal performance
 
